@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang=uk>
+<head>
+	<title>Архітектура</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">      
+      <div class="navbar-header">
+         <a class="navbar-brand" href="/list/<%= typeId %>">
+         	<p class="text-primary">
+         		<span class="glyphicon glyphicon-arrow-left"></span>
+         		<strong><%= tpName %></strong>
+         	</p>
+         </a>
+      </div>
+    </nav>
+    <div class="text-center page-header container-fluid" 
+      style="font-family:Times; background-color: #eeeeff">	 
+      <h1><%= objName %></h1>
+    </div>
+
+  	<div class="row">  	  
+		<div class="col-lg-3 col-md-4 col-sm-5">
+    		<img src="/images/<%= image %>" alt="<%= objName %>" 
+    			class="center-block img-responsive img-thumbnail">
+		</div>
+		<div class="col-lg-8 col-md-7 col-sm-6">
+			<p class="text-justify">
+				<%= descr %>
+			</p>
+			<p>
+				Сучасна адреса: <%= curAddr %>
+			</p>		
+		</div>
+	</div>
+  </div>
+</body>
+</html>
