@@ -2,7 +2,7 @@ exports.main = (req, res) => {
 	const Datastore = require('nedb')
 	const db = new Datastore({ filename: 'lvivold.json', autoload: true })
 	db.find({ table:"arctype" }, (err, docs) => {
-		len = docs.length
+		var len = docs.length
 		res.render(path + '/index.ejs', { types: docs, len: len })
 	})	
 }
