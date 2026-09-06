@@ -1,23 +1,19 @@
 exports.main = (req, res) => {
-	const Datastore = require('nedb')
+	const Datastore = require('@seald-io/nedb')
 	const db = new Datastore({ filename: 'lvivold.json', autoload: true })
-	db.find({ table:"arctype" }, (err, docs = []) => {
-		var ilen = docs.length
-		//var ilen = docs?.length || 0;			
-		// Варіант Б: Класична перевірка через умову
-		//arr = Array.isArray(docs)
-		//arr = Array(docs).length
-		//console.log("arr=", arr)
-		//var ilen = (docs && Array.isArray(docs)) ? docs.length : 0;		
-		
-		res.render(path + '/index.ejs', { types: docs, len: ilen })
+	db.find({ table:"arctype" }, (err, docs) => {
+		if (err) {
+			console.error("Помилка зчитування з NeDB:", err);
+			return;
+		}
+		res.render(path + '/index.ejs', { types: docs })
 	})	
 }
 
 exports.listObjects = (req, res) => {
 	var tpId = parseInt(req.params.id)
 	
-	const Datastore = require('nedb')
+	const Datastore = require('@seald-io/nedb')
 	const db = new Datastore({ filename: 'lvivold.json', autoload: true })
 	db.find( { table:"arcobj", type_id: tpId }, (err, docs) => { 
 		db.findOne( {table:"arctype", id:tpId }, (err, doc) => {
@@ -29,7 +25,7 @@ exports.listObjects = (req, res) => {
 exports.arcObject = (req, res) => {
 	var objId = parseInt(req.params.id)
 	
-	const Datastore = require('nedb')
+	const Datastore = require('@seald-io/nedb')
 	const db = new Datastore({ filename: 'lvivold.json', autoload: true })
 	db.findOne( {table:"arcobj", id:objId }, (err, doc) => {
 		var type_id = doc.type_id
