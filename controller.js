@@ -1,11 +1,14 @@
 exports.main = (req, res) => {
 	const Datastore = require('nedb')
 	const db = new Datastore({ filename: 'lvivold.json', autoload: true })
-	db.find({ table:"arctype" }, (err, docs) => {
-		//var ilen = docs.length
+	db.find({ table:"arctype" }, (err, docs = []) => {
+		var ilen = docs.length
 		//var ilen = docs?.length || 0;			
 		// Варіант Б: Класична перевірка через умову
-		var ilen = (docs && Array.isArray(docs)) ? docs.length : 0;		
+		//arr = Array.isArray(docs)
+		//arr = Array(docs).length
+		//console.log("arr=", arr)
+		//var ilen = (docs && Array.isArray(docs)) ? docs.length : 0;		
 		
 		res.render(path + '/index.ejs', { types: docs, len: ilen })
 	})	
